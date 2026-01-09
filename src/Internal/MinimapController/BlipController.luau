@@ -5,7 +5,7 @@ local plr = game:GetService("Players").LocalPlayer
 
 local blipController = {}
 
--- Konverze 3D pozice na 2D viewport (autor: EgoMoose)
+-- conver 3D position to 2d viewportfram (autor: EgoMoose, enhanced by taco_system)
 local function pointToViewport(camera, p, vps)
 	local lp = camera.CFrame:pointToObjectSpace(p); -- relativní k kameře
 
@@ -21,17 +21,17 @@ local function pointToViewport(camera, p, vps)
 
 	local onscreen = -lp.z > 0 and sx >=0 and sx <= 1 and sy >=0 and sy <= 1;
 
-	-- vrací v pixelech místo scale
+	-- return pixels
 	return Vector2.new(sx*vps.x, sy*vps.y), onscreen;
 end
 
--- Získání UI pozice objektu
+
 function blipController:getUIPosition(objPosition, vps)
 	local pos, onscreen = pointToViewport(game.Workspace.MinimapCamera, objPosition, vps)
 	return pos
 end
 
--- Získání vzdálenosti od hráče
+
 function blipController:getDistanceFromPlayer(pos)
 	if plr.Character then
 		if plr.Character:FindFirstChild("HumanoidRootPart") then
