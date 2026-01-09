@@ -25,7 +25,7 @@ local Settings = require(script.Parent.Parent:WaitForChild("Settings"))
 
 Settings["Divide"] = 1
 
--- Výpočet dělení pro velikost mapy
+
 if Settings["Map"]["mapId"] then
 	if Settings["Map"]["size"].Y > 1024 or Settings["Map"]["size"].X > 1024 then
 		Settings["Divide"] = math.max(Settings["Map"]["size"].Y, Settings["Map"]["size"].X) / 1024
@@ -48,7 +48,7 @@ local Roact = require(script.Parent:WaitForChild("Roact"))
 
 script.Parent:WaitForChild("Roact").Parent = game:GetService("ReplicatedStorage")
 
--- Vytvoření minimap kamery
+
 local MinimapCamera = Instance.new("Camera")
 MinimapCamera.Name = "MinimapCamera"
 MinimapCamera.FieldOfView = 70
@@ -68,7 +68,7 @@ Settings["Y"] = (mapsize.Y.Offset + (mapsize.Y.Scale*vps.Y) / (math.tan(math.rad
 
 
 
--- Proměnné pro large map dragging
+
 local dragOffset = Vector3.new(0, 0, 0)
 local isDragging = false
 local lastMousePos = nil
@@ -84,7 +84,7 @@ if minimapGui then
 	print("Minimap GUI nalezeno!")
 end
 
--- Sledování tlačítek myši
+
 local mouseDown = false
 
 UserInputService.InputBegan:Connect(function(input, gameProcessed)
@@ -96,7 +96,7 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
 			local framePos = mapFrame.AbsolutePosition
 			local frameSize = mapFrame.AbsoluteSize
 
-			-- Kontrola, zda je myš nad mapou
+
 			if mousePos.X >= framePos.X and mousePos.X <= framePos.X + frameSize.X and
 				mousePos.Y >= framePos.Y and mousePos.Y <= framePos.Y + frameSize.Y then
 				mouseDown = true
@@ -127,17 +127,14 @@ UserInputService.InputChanged:Connect(function(input)
 			if lastMousePos then
 				local delta = currentMousePos - lastMousePos
 
-				-- OPRAVENÁ KONVERZE: Invertovaný směr (myš doprava = mapa doleva)
-				-- Citlivost se upravuje podle zoom levelu
+
 				local zoomLevel = Settings["Technical"]["zoomLevel"]
 				local divide = Settings["Divide"]
 
-				-- Základní sensitivity upravená podle zoom levelu
-				-- Čím větší zoom, tím menší pohyb potřebujeme
+
 				local sensitivity = (Settings["Technical"]["onePixel"] * zoomLevel) / divide
 
-				-- INVERTOVANÝ směr: delta se odečítá místo přičítá
-				-- X osa zůstává stejná, Y osa se také invertuje
+
 				dragOffset = dragOffset - Vector3.new(delta.X * sensitivity, 0, delta.Y * sensitivity)
 
 				lastMousePos = currentMousePos
@@ -149,21 +146,21 @@ UserInputService.InputChanged:Connect(function(input)
 	end
 end)
 
--- Auto-recentrování
+
 spawn(function()
 	while true do
 		wait(0.1)
 
 		if not Settings["Technical"]["isLargeMap"] then
-			-- Reset když není large map mód
+
 			dragOffset = Vector3.new(0, 0, 0)
 		elseif not isDragging then
-			-- Auto-recentrování po určitém čase nečinnosti
+
 			if tick() - lastDragTime >= Settings["Technical"]["autoRecenterTime"] then
-				-- Plynulé lerp k nule
+
 				dragOffset = dragOffset:Lerp(Vector3.new(0, 0, 0), Settings["Technical"]["dragSmoothness"])
 
-				-- Snap k nule když je velmi blízko
+
 				if dragOffset.Magnitude < 1 then
 					dragOffset = Vector3.new(0, 0, 0)
 				end
@@ -172,7 +169,7 @@ spawn(function()
 	end
 end)
 
--- Hlavní render loop
+
 RunService.RenderStepped:connect(function()
 	local char = plr.Character or plr.CharacterAdded:wait()
 
@@ -190,17 +187,15 @@ RunService.RenderStepped:connect(function()
 		local divide = Settings["Divide"]
 		local zoomLevel = Settings["Technical"]["zoomLevel"]
 
-		-- Aplikace zoomu úpravou výšky Y
+
 		local zoomedY = (y * onepixel) / zoomLevel
 
-		-- OPRAVENÁ APLIKACE DRAG OFFSETU
-		-- Offset se aplikuje přímo bez dalšího dělení
 		local finalDragOffset = Vector3.new(0, 0, 0)
 		if Settings["Technical"]["isLargeMap"] then
 			finalDragOffset = dragOffset
 		end
 
-		-- Pozice kamery s aplikovaným offsetem
+
 		local P = Vector3.new(ROOTPART_POS.X, zoomedY, ROOTPART_POS.Z) / divide + finalDragOffset
 
 		local heading = 0
@@ -212,4 +207,4 @@ RunService.RenderStepped:connect(function()
 	end
 end)
 
-print("Minimap modul načten")
+print("Minimap module loaded")
