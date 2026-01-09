@@ -1,9 +1,7 @@
--- VYLEPŠENÝ BORDERSNAP SYSTÉM
--- Lepší matematika pro snapping na okraje s kulatými rohy
 
 local BorderSnap = {}
 
--- Získání pozic rohů minimapy
+
 local function getCornerPositions(absoluteSize, cornerSize)
 	return {
 		topLeft = Vector2.new(cornerSize, cornerSize),
@@ -13,14 +11,14 @@ local function getCornerPositions(absoluteSize, cornerSize)
 	}
 end
 
--- Výpočet skutečného poloměru rohu
+
 local function getRadius(cornerRadius, absoluteSize)
 	local minimumSize = math.min(absoluteSize.X, absoluteSize.Y)
 	local cornerSize = minimumSize * math.clamp(cornerRadius.Scale, 0, 0.5) + math.clamp(cornerRadius.Offset, 0, minimumSize / 2)
 	return cornerSize, getCornerPositions(absoluteSize, cornerSize)
 end
 
--- Detekce, ve kterém rohu se blip nachází
+
 local function detectCorner(pos, corners)
 	if pos.X < corners.topLeft.X and pos.Y < corners.topLeft.Y then
 		return "topLeft", corners.topLeft
@@ -34,12 +32,12 @@ local function detectCorner(pos, corners)
 	return nil, nil
 end
 
--- Vylepšený clamp na kruhový roh
+
 local function clampToCircularCorner(pos, center, radius)
 	local offset = pos - center
 	local distance = offset.Magnitude
 
-	-- Pokud je bod mimo kruh, přichytit ho na obvod kruhu
+
 	if distance > radius then
 		local normalized = offset.Unit
 		return center + (normalized * radius)
@@ -48,7 +46,7 @@ local function clampToCircularCorner(pos, center, radius)
 	return pos
 end
 
--- Hlavní funkce pro snapping na okraje
+
 function BorderSnap:ClampToBorder(position, absoluteSize, cornerRadius)
 	-- Výpočet poloměru a pozic rohů
 	local radius, corners = getRadius(cornerRadius, absoluteSize)
