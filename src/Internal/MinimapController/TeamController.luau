@@ -1,4 +1,4 @@
--- TEAM CONTROLLER
+
 
 local TeamController = {}
 
@@ -7,7 +7,7 @@ local Players = game:GetService("Players")
 
 local plr = Players.LocalPlayer
 
--- Získání konfigurace týmu
+
 function TeamController:GetTeamConfig(teamName)
 	if not Settings["Teams"]["enabled"] then
 		return nil
@@ -22,7 +22,7 @@ function TeamController:IsTeamEnabled(teamName)
 	return config and config.enabled
 end
 
--- Kontrola, zda se má hráč zobrazit
+
 function TeamController:ShouldShowPlayer(player)
 	if not Settings["Teams"]["enabled"] then
 		return false
@@ -32,7 +32,7 @@ function TeamController:ShouldShowPlayer(player)
 		return false -- Nezobrazovat sebe
 	end
 
-	-- Pokud showAllTeams je true, zobraz všechny
+
 	if Settings["Teams"]["showAllTeams"] then
 		if player.Team then
 			return self:IsTeamEnabled(player.Team.Name)
@@ -40,7 +40,7 @@ function TeamController:ShouldShowPlayer(player)
 		return false
 	end
 
-	-- Jinak zobraz jen hráče ze stejného týmu
+
 	if not plr.Team or not player.Team then
 		return false
 	end
@@ -52,7 +52,7 @@ function TeamController:ShouldShowPlayer(player)
 	return false
 end
 
--- Získání barvy ikony hráče podle týmu
+
 function TeamController:GetPlayerIconColor(player)
 	if not player.Team then
 		return Color3.fromRGB(255, 255, 255)
@@ -66,7 +66,7 @@ function TeamController:GetPlayerIconColor(player)
 	return Color3.fromRGB(255, 255, 255)
 end
 
--- Získání velikosti ikony hráče
+
 function TeamController:GetPlayerIconSize(player)
 	if not player.Team then
 		return Settings["Gui"]["playerSize"]
@@ -80,7 +80,7 @@ function TeamController:GetPlayerIconSize(player)
 	return Settings["Gui"]["playerSize"]
 end
 
--- Získání ikony hráče
+
 function TeamController:GetPlayerIcon(player)
 	if not player.Team then
 		return Settings["Gui"]["playerIcon"]
@@ -94,7 +94,7 @@ function TeamController:GetPlayerIcon(player)
 	return Settings["Gui"]["playerIcon"]
 end
 
--- Získání všech hráčů, kteří se mají zobrazit
+
 function TeamController:GetVisiblePlayers()
 	local visiblePlayers = {}
 
