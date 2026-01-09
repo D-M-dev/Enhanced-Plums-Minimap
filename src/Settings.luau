@@ -1,6 +1,6 @@
 local Settings = 
 	{
-		["Tags"] = { -- Tagy pro zobrazení na minimapě
+		["Tags"] = { -- Tags - can be parts, mesh whatever you want it needs to have a cframe and tag - For better working I suggest you to put these tags in ReplicatedStorage because of streaming
 			{
 				tagName = "CarSpawn";
 				toolTip = "CarSpawn";
@@ -10,209 +10,17 @@ local Settings =
 				snapToBorder = true;
 				rotate = false;
 			};
-
-			{
-				tagName = "Nemocnice";
-				toolTip = "";
-				text = "Nemocnice";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Vozovna";
-				toolTip = "";
-				text = "Vozovna";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Hasičský záchr. sbor";
-				toolTip = "";
-				text = "Hasičský záchr. sbor";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Nákupní zóna";
-				toolTip = "";
-				text = "Nákupní zóna";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Benzinová pumpa";
-				toolTip = "";
-				text = "Benzinová pumpa";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Autobusové nádraží";
-				toolTip = "";
-				text = "Autobusové nádraží";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Cihelna";
-				toolTip = "";
-				text = "Cihelna";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Podolí";
-				toolTip = "";
-				text = "Podolí";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Závodní okruh";
-				toolTip = "";
-				text = "Závodní okruh";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Kocourov";
-				toolTip = "";
-				text = "Kocourov";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Psikov";
-				toolTip = "";
-				text = "Psíkov";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Dealership";
-				toolTip = "Dealership";
-				iconID = 81004738963933;
-				color = Color3.fromRGB(255,255,255);
-				size = UDim2.new(0, 26, 0, 26); 
-				snapToBorder = true;
-				rotate = false;
-			};
-			
-			
-			{
-				tagName = "Rakvice";
-				toolTip = "";
-				text = "Rakvice";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Městská policie";
-				toolTip = "";
-				text = "Městská policie";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "Policie České republiky";
-				toolTip = "";
-				text = "Policie České republiky";
-				color = Color3.fromRGB(255, 255, 255);
-				size = UDim2.new(0, 24, 0, 24); 
-				snapToBorder = false;
-				rotate = false;
-			};
-			
-			{
-				tagName = "EggDog Sídliště";
-				toolTip = "";
-				text = "EggDog Sídliště";
-				color = Color3.fromRGB(255,255,255);
-				size = UDim2.new(0, 32, 0, 32); 
-				snapToBorder = false;
-				rotate = false;
-				
-			};
-			
+	
 		};
 
-		["Teams"] = { -- Nastavení týmů pro zobrazení na minimapě
-			enabled = true; -- Zapnout/vypnout zobrazení týmů
-			showAllTeams = false; -- true = vidět všechny týmy, false = jen své
+		["Teams"] = { -- Config for teams visible
+			enabled = true; -- if player is in that team, he will see on the minimap players in same team.
+			showAllTeams = false; -- true = for everyone
 
 			teams = {
-				["Hasičský Záchranný Sbor"] = {
+				["NAME-OF-YOUR-TEAM-HERE"] = {
 					enabled = true;
-					color = Color3.fromRGB(255, 0, 4); -- Modrá
-					icon = 5483943698;
-					size = UDim2.new(0, 18, 0, 18);
-				};
-				["Místní Oddělení Policie"] = {
-					enabled = true;
-					color = Color3.fromRGB(60, 0, 255); -- Modrá
-					icon = 5483943698;
-					size = UDim2.new(0, 18, 0, 18);
-				};
-				["Cizinecká Policie"] = {
-					enabled = true;
-					color = Color3.fromRGB(255, 0, 4); -- Modrá
-					icon = 5483943698;
-					size = UDim2.new(0, 18, 0, 18);
-				};
-				["Oddělení Hlídkové Služby"] = {
-					enabled = true;
-					color = Color3.fromRGB(255, 0, 4); -- Modrá
-					icon = 5483943698;
-					size = UDim2.new(0, 18, 0, 18);
-				};
-				["Pohotovostní Motorizovaná Jednotka"] = {
-					enabled = true;
-					color = Color3.fromRGB(38, 0, 255); -- Modrá
-					icon = 5483943698;
-					size = UDim2.new(0, 18, 0, 18);
-				};
-				["Policie České republiky"] = {
-					enabled = true;
-					color = Color3.fromRGB(0, 38, 255); -- Modrá
+					color = Color3.fromRGB(255, 0, 4); -- blue
 					icon = 5483943698;
 					size = UDim2.new(0, 18, 0, 18);
 				};
@@ -221,28 +29,28 @@ local Settings =
 		};
 
 
-		["Gui"] = { -- Nastavení GUI
+		["Gui"] = { -- Gui settings
 			["mapSize"] = UDim2.new(.19,0,.19,0);
 			["borderSize"] = 3;
 			["anchorPoint"] = Vector2.new(0,1);
 			["mapPosition"] = UDim2.new(0.008, -10, 0.915, -5);
 
-			-- Large Map nastavení
+			-- Large Map settings
 			["largeMapSize"] = UDim2.new(0.7, 0, 0.7, 0);
 			["largeMapPosition"] = UDim2.new(0.5, 0, 0.5, 0);
 			["largeMapAnchorPoint"] = Vector2.new(0.5, 0.5);
 
 			["Ratio"] = nil;
 
-			-- Barvy
+			-- Colours
 			["mapColor"] = Color3.fromRGB(103, 161, 255);
 			["borderColor"] = Color3.fromRGB(176, 176, 176);
 
-			-- Průhlednost
+			-- Transparency
 			["mapTransparency"] = .5;
 			["borderTransparency"] = 0.4;
 
-			-- Zaoblené rohy
+			-- Corners
 			["mapCornerRoundness"] = UDim.new(0, 5);
 			["borderCornerRoundness"] = UDim.new(0, 5);
 
@@ -251,7 +59,7 @@ local Settings =
 			["blipBorderSizePixel"] = 0;
 			["blipBorderColor"] = Color3.fromRGB(0,0,0);
 
-			-- Hráč
+			-- Player
 			["playerSize"] = UDim2.new(0,18,0,18);
 			["playerLargeSize"] = UDim2.new(0,25,0,25);
 			["playerIcon"] = 5483943698;
@@ -264,16 +72,16 @@ local Settings =
 			["toolTipBorderSize"] = 2;
 			["toolTipTextColor"] = Color3.fromRGB(255, 255, 255);
 
-			-- Zoom tlačítka
+			-- Zoom buttons
 			["zoomButtonSize"] = UDim2.new(0, 30, 0, 30);
 			["zoomButtonColor"] = Color3.fromRGB(51, 51, 51);
 			["zoomButtonTextColor"] = Color3.fromRGB(255, 255, 255);
 			["zoomButtonTransparency"] = 0.2;
 		};
 
-		["Map"] = {
+		["Map"] = {----- here you put your image ids of your map you can use rorender for a render of your map or you can do it by parts here is example
 			["images"] = {
-				-- HORNÍ LEVÁ
+				-- Up left
 				{
 					["mapId"] = 82958275526624,
 					["center"] = Vector3.new(
@@ -287,7 +95,7 @@ local Settings =
 					),
 				},
 
-				-- HORNÍ PRAVÁ
+				-- Up right
 				{
 					["mapId"] = 85471014684493,
 					["center"] = Vector3.new(
@@ -301,7 +109,7 @@ local Settings =
 					),
 				},
 
-				-- DOLNÍ LEVÁ
+				-- Bottom left
 				{
 					["mapId"] = 135569291863770,
 					["center"] = Vector3.new(
@@ -315,7 +123,7 @@ local Settings =
 					),
 				},
 
-				-- DOLNÍ PRAVÁ
+				-- Bottom right
 				{
 					["mapId"] = 108408112197531,---kdyžtak je návod v dev infu
 					["center"] = Vector3.new(
@@ -331,21 +139,21 @@ local Settings =
 			}
 		};
 
-		["Technical"] = { -- Technické nastavení
+		["Technical"] = { -- Technical settings
 			["onePixel"] = 3;
-			["maxBlipDistance"] = 100000;
+			["maxBlipDistance"] = 100000;-----You can also use math.huge
 			["rotation"] = true;
 			["Visible"] = true;
 			["mapRotation"] = -180;
 
-			-- Zoom nastavení
+			-- Zoom settings
 			["zoomLevel"] = 1;
 			["minZoom"] = 0.5;
 			["maxZoom"] = 3;
 			["zoomStep"] = 0.25;
 
-			-- Large Map nastavení
-			["isLargeMap"] = false;---Hlavní promměnýá při Large Cyklu
+			-- Large Map settings
+			["isLargeMap"] = false;
 			["autoRecenterTime"] = 3;
 			["dragSmoothness"] = 0.15;--patched
 		};
